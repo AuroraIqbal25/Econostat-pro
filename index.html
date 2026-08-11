@@ -613,6 +613,50 @@ button{cursor:pointer;font-family:var(--sans);transition:all .15s;border:none;ou
     padding:7px 6px;
   }
 }
+  @media (max-width: 600px) {
+
+  /* Keep regression tables inside the phone screen */
+  .data-table {
+    width: 100%;
+    max-width: 100%;
+    table-layout: fixed;
+    font-size: 9px;
+  }
+
+  .data-table th {
+    padding: 5px 4px;
+    font-size: 8px;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
+  .data-table td {
+    padding: 5px 4px;
+    font-size: 9px;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
+  /* Numbers can wrap too instead of forcing the table wider */
+  .data-table .num {
+    text-align: right;
+    white-space: normal;
+  }
+
+  /* Make regression/result cards fit the screen */
+  .card-body {
+    overflow-x: hidden;
+  }
+
+  /* Prevent long model names / statistics from expanding the page */
+  .card,
+  .card-body,
+  .data-table {
+    min-width: 0;
+  }
+}
 </style>
 </head>
 <body>
