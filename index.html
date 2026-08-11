@@ -277,37 +277,94 @@ button{cursor:pointer;font-family:var(--sans);transition:all .15s;border:none;ou
   }
 
   /* Sidebar becomes a compact horizontal menu */
-  #sidebar{
-    position:relative;
-    width:100%;
-    min-width:0;
-  }
+ /* Mobile sidebar */
+#sidebar{
+  position:relative;
+  width:100%;
+  min-width:0;
+  height:auto;
+  min-height:0;
+  overflow:visible;
+  display:flex;
+  flex-direction:column;
+  background:var(--sidebar);
+}
 
-  .sidebar-logo{
-    padding:12px 14px;
-  }
+/* Logo stays as the first row */
+.sidebar-logo{
+  width:100%;
+  padding:12px 14px;
+  flex-shrink:0;
+}
 
-  .sidebar-logo h1{
-    font-size:18px;
-  }
+.sidebar-logo h1{
+  font-size:18px;
+}
 
-  .nav-item{
-    font-size:11px;
-    padding:7px 9px;
-    gap:5px;
-  }
+.sidebar-logo p{
+  display:none;
+}
 
-  .nav-item svg{
-    width:13px;
-    height:13px;
-  }
+/* Hide section labels on mobile */
+#sidebar .nav-section{
+  display:none;
+}
 
-  /* Keep navigation from creating horizontal overflow */
-  #sidebar{
-    overflow-x:auto;
-    white-space:nowrap;
-  }
+/* Navigation items form a wrapping grid */
+#sidebar .nav-item{
+  display:flex;
+  align-items:center;
+  margin:2px;
+  padding:7px 9px;
+  gap:5px;
+  font-size:11px;
+  border-radius:5px;
+  flex:0 0 auto;
+  width:auto;
+}
 
+#sidebar .nav-item svg{
+  width:13px;
+  height:13px;
+  flex-shrink:0;
+}
+
+/*
+   Put navigation into rows based on the
+   original order:
+   Home + Upload
+   Cross + Time Series + Panel
+   Stats + Graphs
+*/
+
+/* Data navigation row */
+#sidebar .nav-item[data-page="home"],
+#sidebar .nav-item[data-page="upload"]{
+  width:calc(50% - 4px);
+}
+
+/* Model navigation */
+#sidebar .nav-item[data-page="cross"],
+#sidebar .nav-item[data-page="tseries"],
+#sidebar .nav-item[data-page="panel"]{
+  width:calc(33.333% - 4px);
+}
+
+/* Analysis navigation */
+#sidebar .nav-item[data-page="stats"],
+#sidebar .nav-item[data-page="viz"]{
+  width:calc(50% - 4px);
+}
+
+/* Hide dynamically-added items unless they are visible */
+#sidebar .nav-item[style*="display:none"]{
+  display:none !important;
+}
+
+/* Footer hidden on mobile */
+.sidebar-footer{
+  display:none;
+}
   /* Main content */
   #main{
     width:100%;
