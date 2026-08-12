@@ -1,4 +1,25 @@
 export default async function handler(req, res) {
+
+  // Allow GitHub Pages to call this API
+  res.setHeader(
+    "Access-Control-Allow-Origin",
+    "https://auroraiqbal25.github.io"
+  );
+  res.setHeader(
+    "Access-Control-Allow-Methods",
+    "POST, OPTIONS"
+  );
+  res.setHeader(
+    "Access-Control-Allow-Headers",
+    "Content-Type"
+  );
+
+  // Handle CORS preflight
+  if (req.method === "OPTIONS") {
+    return res.status(200).end();
+  }
+
+  // Only allow POST requests
   if (req.method !== "POST") {
     return res.status(405).json({
       error: "Method not allowed"
@@ -6,7 +27,7 @@ export default async function handler(req, res) {
   }
 
   try {
-    const { system, message } = req.body;
+    const { system, message } = req.body || {};
 
     const response = await fetch(
       "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.6-flash:generateContent",
