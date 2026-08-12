@@ -743,7 +743,7 @@ async function callAI(sys, msg) {
   const r = await fetch("https://script.google.com/macros/s/AKfycbzwZwOjOtpemFpzMoJCzm44Hbj_NMB4xd1oIYG17aiRnQV7D8pkmuCpvGK6vtLhrKuW/exec", {
     method: "POST",
     headers: {
-      "Content-Type": "application/json"
+      "Content-Type": "text/plain;charset=utf-8"
     },
     body: JSON.stringify({
       system: sys,
