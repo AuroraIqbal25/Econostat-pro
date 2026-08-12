@@ -740,16 +740,16 @@ button{cursor:pointer;font-family:var(--sans);transition:all .15s;border:none;ou
 
 <script>
 async function callAI(sys, msg) {
-  const r = await fetch(
-    "https://script.google.com/macros/s/AKfycbzwZwOjOtpemFpzMoJCzm44Hbj_NMB4xd1oIYG17aiRnQV7D8pkmuCpvGK6vtLhrKuW/exec",
-    {
-      method: "POST",
-      body: JSON.stringify({
-        system: sys,
-        message: msg
-      })
-    }
-  );
+  const r = await fetch("https://econostat-pro.vercel.app/api/gemini", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      system: sys,
+      message: msg
+    })
+  });
 
   const d = await r.json();
 
