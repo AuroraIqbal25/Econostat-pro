@@ -740,7 +740,7 @@ button{cursor:pointer;font-family:var(--sans);transition:all .15s;border:none;ou
 
 <script>
 async function callAI(sys, msg) {
-  const r = await fetch("/api/gemini", {
+  const r = await fetch("https://econostat-pro.vercel.app/api/gemini", {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
@@ -759,7 +759,6 @@ async function callAI(sys, msg) {
 
   return d.content.map(b => b.text || "").join("");
 }
-
 // ── STATE ──────────────────────────────────────────────────────────────────
 let S={
   page:"home",dtype:"cross-sectional",
